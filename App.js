@@ -37,6 +37,9 @@ export default function App() {
       setLoginMessage("Successful", "You are logged in")
     }
     else setLoginMessage("Incorrect email or password", "Please try again")
+    setEmail('');
+    setPassword('');
+  
   }
 
   useEffect(() => {
@@ -53,8 +56,9 @@ export default function App() {
   return (
     <View style={styles.container}>
       <SafeAreaView>
-        <TextInput
+      <TextInput
           style={styles.input}
+          value={email}
           onChangeText={changeEmail}
           placeholder="Email"
           keyboardType="email-address"
@@ -62,12 +66,13 @@ export default function App() {
         />
         <TextInput
           style={styles.input}
+          value={password}
           onChangeText={changePassword}
           placeholder="Password"
           secureTextEntry
         />
         <Button title="Login" onPress={login} />
-        <Text style={styles.loginMessage}>{loginMessage}</Text>
+        {loginMessage ? <Text style={styles.loginMessage}>{loginMessage}</Text> : null}
       </SafeAreaView>
 
     </View>
